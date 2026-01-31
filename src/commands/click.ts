@@ -3,7 +3,7 @@ import { clickButton } from "../core/ui-automation.js";
 
 export default {
   name: "click",
-  description: "버튼 클릭",
+  description: "Click a button",
   usage: "click <app> --button <name>",
   args: [
     { name: "app", type: "positional", required: true },
@@ -13,6 +13,6 @@ export default {
     const app = ctx.args.app as string;
     const btn = ctx.args.button as string;
     await clickButton(app, btn);
-    console.log(`"${app}" 버튼 "${btn}" 클릭됨`);
+    console.log(`Clicked button "${btn}" in "${app}"`);
   },
 } satisfies CommandDefinition;

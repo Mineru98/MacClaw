@@ -3,7 +3,7 @@ import { setWindowBounds } from "../core/window-control.js";
 
 export default {
   name: "move",
-  description: "윈도우 위치 변경",
+  description: "Move window position",
   usage: "move <app> --x N --y N",
   args: [
     { name: "app", type: "positional", required: true },
@@ -15,10 +15,10 @@ export default {
     const x = parseInt(ctx.args.x as string, 10);
     const y = parseInt(ctx.args.y as string, 10);
     if (isNaN(x) || isNaN(y)) {
-      console.error("--x 와 --y 값이 필요합니다.");
+      console.error("--x and --y values are required.");
       process.exit(1);
     }
     await setWindowBounds(app, { x, y });
-    console.log(`"${app}" 윈도우 이동 → (${x}, ${y})`);
+    console.log(`Moved "${app}" window to (${x}, ${y})`);
   },
 } satisfies CommandDefinition;

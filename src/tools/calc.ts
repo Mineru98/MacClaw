@@ -3,7 +3,7 @@ import { calcExpression } from "../core/ui-automation.js";
 
 export default {
   name: "calc",
-  description: '계산기로 계산 (예: "42*3")',
+  description: 'Calculate with Calculator (e.g. "42*3")',
   usage: "calc <expression>",
   args: [{ name: "expression", type: "positional", required: true }],
   async run(ctx) {

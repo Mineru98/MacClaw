@@ -3,7 +3,7 @@ import { setWindowBounds } from "../core/window-control.js";
 
 export default {
   name: "resize",
-  description: "윈도우 크기 변경",
+  description: "Resize a window",
   usage: "resize <app> --w N --h N",
   args: [
     { name: "app", type: "positional", required: true },
@@ -15,10 +15,10 @@ export default {
     const w = parseInt(ctx.args.w as string, 10);
     const h = parseInt(ctx.args.h as string, 10);
     if (isNaN(w) || isNaN(h)) {
-      console.error("--w 와 --h 값이 필요합니다.");
+      console.error("--w and --h values are required.");
       process.exit(1);
     }
     await setWindowBounds(app, { width: w, height: h });
-    console.log(`"${app}" 윈도우 크기 변경 → ${w}x${h}`);
+    console.log(`Resized "${app}" window to ${w}x${h}`);
   },
 } satisfies CommandDefinition;

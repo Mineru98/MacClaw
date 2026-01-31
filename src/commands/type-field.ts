@@ -3,7 +3,7 @@ import { typeInField } from "../core/ui-automation.js";
 
 export default {
   name: "type-field",
-  description: "텍스트 필드 입력",
+  description: "Type into a text field",
   usage: "type-field <app> --field N --text <text>",
   args: [
     { name: "app", type: "positional", required: true },
@@ -15,6 +15,6 @@ export default {
     const field = parseInt(ctx.args.field as string, 10);
     const text = ctx.args.text as string;
     await typeInField(app, field, text);
-    console.log(`"${app}" 텍스트 필드 ${field}에 입력됨`);
+    console.log(`Typed into text field ${field} of "${app}"`);
   },
 } satisfies CommandDefinition;

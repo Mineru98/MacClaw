@@ -3,7 +3,7 @@ import { clickMenuItem } from "../core/ui-automation.js";
 
 export default {
   name: "menu",
-  description: "메뉴 아이템 클릭",
+  description: "Click a menu item",
   usage: "menu <app> --menu <name> --item <name>",
   args: [
     { name: "app", type: "positional", required: true },
@@ -15,6 +15,6 @@ export default {
     const menuName = ctx.args.menu as string;
     const itemName = ctx.args.item as string;
     await clickMenuItem(app, menuName, itemName);
-    console.log(`"${app}" 메뉴 "${menuName}" > "${itemName}" 클릭됨`);
+    console.log(`Clicked "${app}" menu "${menuName}" > "${itemName}"`);
   },
 } satisfies CommandDefinition;

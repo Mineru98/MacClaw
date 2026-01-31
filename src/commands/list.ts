@@ -3,12 +3,12 @@ import { listRunningApps } from "../core/app-control.js";
 
 export default {
   name: "list",
-  description: "실행 중인 앱 목록",
+  description: "List running apps",
   usage: "list",
   args: [],
   async run() {
     const apps = await listRunningApps();
-    console.log(`실행 중인 앱 (${apps.length}개):\n`);
+    console.log(`Running apps (${apps.length}):\n`);
     for (const app of apps) {
       console.log(`  ${app}`);
     }
