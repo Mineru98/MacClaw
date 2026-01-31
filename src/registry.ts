@@ -19,6 +19,13 @@ import typeCmd from "./commands/type.js";
 import mouseClickCmd from "./commands/mouse-click.js";
 import elementsCmd from "./commands/elements.js";
 import calcCmd from "./tools/calc.js";
+import {
+  telegramLaunchCmd,
+  telegramStatusCmd,
+  telegramChatsCmd,
+  telegramSearchCmd,
+  telegramSendCmd,
+} from "./tools/telegram.js";
 
 const allCommands: CommandDefinition[] = [
   launchCmd,
@@ -39,6 +46,11 @@ const allCommands: CommandDefinition[] = [
   mouseClickCmd,
   elementsCmd,
   calcCmd,
+  telegramLaunchCmd,
+  telegramStatusCmd,
+  telegramChatsCmd,
+  telegramSearchCmd,
+  telegramSendCmd,
 ];
 
 export const registry = new Map<string, CommandDefinition>();
