@@ -76,8 +76,34 @@ export async function mouseClick(x: number, y: number): Promise<void> {
   await mouse.leftClick();
 }
 
+/** Ensure an app is running and its window is ready. Launches if not running. */
+export async function ensureAppRunning(appName: string): Promise<void> {
+  const safe = sanitize(appName);
+  const running = await execAppleScript(
+    `tell application "System Events" to (name of processes) contains "${safe}"`,
+  );
+  if (running.trim() !== "true") {
+    await execAppleScript(`tell application "${safe}" to activate`);
+  }
+  // Wait until the app has at least one window
+  await execAppleScript(
+    `tell application "System Events"
+      repeat 20 times
+        if (name of processes) contains "${safe}" then
+          tell process "${safe}"
+            if (count of windows) > 0 then return
+          end tell
+        end if
+        delay 0.3
+      end repeat
+      error "Timed out waiting for ${safe} to be ready"
+    end tell`,
+  );
+}
+
 /** Use the macOS Calculator app: type an expression, press =, and return the result. */
 export async function calcExpression(expression: string): Promise<string> {
+  await ensureAppRunning("Calculator");
   await execAppleScript(`tell application "Calculator" to activate`);
   // Wait for activation
   await execAppleScript(

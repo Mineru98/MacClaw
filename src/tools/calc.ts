@@ -1,5 +1,6 @@
 import type { CommandDefinition } from "../types.js";
 import { calcExpression } from "../core/ui-automation.js";
+import { execAppleScript } from "../core/osascript.js";
 
 export default {
   name: "calc",
@@ -10,5 +11,6 @@ export default {
     const expr = ctx.args.expression as string;
     const result = await calcExpression(expr);
     console.log(`${expr} = ${result}`);
+    await execAppleScript(`tell application "Calculator" to quit`);
   },
 } satisfies CommandDefinition;
