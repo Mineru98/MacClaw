@@ -28,14 +28,29 @@ async function goToChats(): Promise<void> {
   );
 }
 
+/** Paste text via clipboard (supports Korean and other non-ASCII characters). */
+async function pasteText(text: string): Promise<void> {
+  await execAppleScript(`set the clipboard to "${sanitize(text)}"`);
+  await execAppleScript(
+    `tell application "System Events" to tell process "${PROCESS}"
+      keystroke "v" using command down
+      delay 0.3
+    end tell`,
+  );
+}
+
 /** Open search (Cmd+K), type a query, and select the first result. */
 async function searchAndSelect(query: string): Promise<void> {
   await execAppleScript(
     `tell application "System Events" to tell process "${PROCESS}"
       keystroke "k" using command down
       delay 0.5
-      keystroke "${sanitize(query)}"
-      delay 1
+    end tell`,
+  );
+  await pasteText(query);
+  await execAppleScript(
+    `tell application "System Events" to tell process "${PROCESS}"
+      delay 0.7
       key code 36
       delay 0.5
     end tell`,
@@ -44,10 +59,9 @@ async function searchAndSelect(query: string): Promise<void> {
 
 /** Type a message in the current chat and press Enter to send. */
 async function sendMessage(message: string): Promise<void> {
+  await pasteText(message);
   await execAppleScript(
     `tell application "System Events" to tell process "${PROCESS}"
-      keystroke "${sanitize(message)}"
-      delay 0.3
       key code 36
       delay 0.3
     end tell`,
