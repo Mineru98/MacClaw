@@ -11,7 +11,7 @@ async function activateTelegram(): Promise<void> {
   await execAppleScript(`tell application "${PROCESS}" to activate`);
   await execAppleScript(
     `tell application "System Events" to tell process "${PROCESS}"
-      delay 0.5
+      delay 1
     end tell`,
   );
 }
@@ -21,9 +21,9 @@ async function goToChats(): Promise<void> {
   await execAppleScript(
     `tell application "System Events" to tell process "${PROCESS}"
       key code 53
-      delay 0.3
+      delay 0.5
       key code 53
-      delay 0.3
+      delay 0.5
     end tell`,
   );
 }
@@ -34,7 +34,7 @@ async function pasteText(text: string): Promise<void> {
   await execAppleScript(
     `tell application "System Events" to tell process "${PROCESS}"
       keystroke "v" using command down
-      delay 0.3
+      delay 0.5
     end tell`,
   );
 }
@@ -44,15 +44,15 @@ async function searchAndSelect(query: string): Promise<void> {
   await execAppleScript(
     `tell application "System Events" to tell process "${PROCESS}"
       keystroke "k" using command down
-      delay 0.5
+      delay 1.0
     end tell`,
   );
   await pasteText(query);
   await execAppleScript(
     `tell application "System Events" to tell process "${PROCESS}"
-      delay 0.7
+      delay 1.5
       key code 36
-      delay 0.5
+      delay 1.0
     end tell`,
   );
 }
@@ -63,7 +63,7 @@ async function sendMessage(message: string): Promise<void> {
   await execAppleScript(
     `tell application "System Events" to tell process "${PROCESS}"
       key code 36
-      delay 0.3
+      delay 0.5
     end tell`,
   );
 }
