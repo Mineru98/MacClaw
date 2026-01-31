@@ -112,7 +112,6 @@ export const telegramSearchCmd = {
   async run(ctx) {
     const query = ctx.args.query as string;
     await activateTelegram();
-    await goToChats();
     await searchAndSelect(query);
     console.log(`Opened chat: ${query}`);
   },
@@ -130,7 +129,6 @@ export const telegramSendCmd = {
     const recipient = ctx.args.recipient as string;
     const message = ctx.args.msg as string;
     await activateTelegram();
-    await goToChats();
     await searchAndSelect(recipient);
     await sendMessage(message);
     console.log(`Message sent to ${recipient}: "${message}"`);
