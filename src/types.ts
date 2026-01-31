@@ -31,3 +31,27 @@ export interface OsascriptResult {
   stderr: string;
   exitCode: number;
 }
+
+// --- Command Registry ---
+
+export interface ArgDefinition {
+  name: string;
+  type: "positional" | "flag" | "option";
+  required?: boolean;
+  default?: string;
+  description?: string;
+}
+
+export interface CommandContext {
+  args: Record<string, string | boolean | undefined>;
+  rawArgs: string[];
+}
+
+export interface CommandDefinition {
+  name: string;
+  description: string;
+  usage: string;
+  needsAccessibility?: boolean;
+  args: ArgDefinition[];
+  run(ctx: CommandContext): Promise<void>;
+}
