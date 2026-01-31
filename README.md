@@ -20,7 +20,7 @@ A macOS application controller CLI built with Bun and TypeScript. Control native
 ## Installation
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/Mineru98/MacClaw
 cd MacClaw
 bun install
 bun link
