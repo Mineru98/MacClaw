@@ -1,0 +1,30 @@
+{
+  "name": "macclaw",
+  "version": "0.1.0",
+  "description": "macOS app controller CLI - launch, control, and automate any application",
+  "module": "src/index.ts",
+  "type": "module",
+  "bin": {
+    "macclaw": "src/index.ts"
+  },
+  "private": false,
+  "scripts": {
+    "start": "bun src/index.ts",
+    "dev": "bun --watch src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.13",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@nut-tree-fork/nut-js": "^4.2.6",
+    "zod": "^4.3.6"
+  }
+}
