@@ -14,6 +14,6 @@ async function main(): Promise<void> {
 }
 
 main().catch((err) => {
-  console.error(`오류: ${err.message}`);
+  console.error(`Error: ${err.message}`);
   process.exit(1);
 });

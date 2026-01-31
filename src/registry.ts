@@ -100,7 +100,7 @@ export function printUsage(): void {
   const lines: string[] = [
     "MacClaw - macOS App Controller",
     "",
-    "사용법: macclaw <command> [options]",
+    "Usage: macclaw <command> [options]",
     "",
     "Commands:",
   ];
@@ -114,7 +114,7 @@ export function printUsage(): void {
 
   lines.push("");
   lines.push("Options:");
-  lines.push("  --help                              도움말 표시");
+  lines.push("  --help                              Show help");
 
   console.log(lines.join("\n"));
 }
@@ -125,8 +125,8 @@ export async function runCommand(
 ): Promise<void> {
   const cmd = registry.get(name);
   if (!cmd) {
-    console.error(`알 수 없는 명령어: ${name}`);
-    console.error("--help 로 사용법을 확인하세요.");
+    console.error(`Unknown command: ${name}`);
+    console.error("Use --help to see available commands.");
     process.exit(1);
   }
 
@@ -138,7 +138,7 @@ export async function runCommand(
   const parsed = parseArgs(cmd.args, rawArgs);
   for (const def of cmd.args) {
     if (def.required && parsed[def.name] === undefined) {
-      console.error(`사용법: ${cmd.usage}`);
+      console.error(`Usage: ${cmd.usage}`);
       process.exit(1);
     }
   }
