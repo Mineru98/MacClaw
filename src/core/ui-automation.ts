@@ -93,6 +93,8 @@ export async function ensureAppRunning(appName: string): Promise<void> {
           tell process "${safe}"
             if (count of windows) > 0 then return
           end tell
+          -- Process running but no window; activate to open one
+          tell application "${safe}" to activate
         end if
         delay 0.3
       end repeat

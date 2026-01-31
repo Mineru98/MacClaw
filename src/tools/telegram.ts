@@ -7,11 +7,14 @@ const PROCESS = "Telegram";
 
 /** Activate Telegram and wait for its window to be ready. */
 async function activateTelegram(): Promise<void> {
+  const wasRunning = await isRunning(PROCESS);
   await ensureAppRunning(PROCESS);
   await execAppleScript(`tell application "${PROCESS}" to activate`);
+  // Cold launch needs more time for Telegram to fully initialise its UI
+  const settleDelay = wasRunning ? 1 : 4;
   await execAppleScript(
     `tell application "System Events" to tell process "${PROCESS}"
-      delay 1
+      delay ${settleDelay}
     end tell`,
   );
 }
