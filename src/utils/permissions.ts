@@ -14,16 +14,13 @@ export async function ensureAccessibility(): Promise<void> {
   if (!ok) {
     console.error(
       [
-        "접근성 권한이 필요합니다.",
+        "Accessibility permission is required.",
         "",
-        "설정 방법:",
-        "  1. 시스템 설정 > 개인정보 보호 및 보안 > 접근성",
-        "  2. '+' 버튼을 클릭하여 터미널 앱 추가",
-        "     (Terminal.app, iTerm, Warp 등 사용 중인 터미널)",
-        "  3. 토글을 켜서 권한 허용",
-        "",
-        "System Settings > Privacy & Security > Accessibility",
-        "Add your terminal app and enable the toggle.",
+        "Setup:",
+        "  1. System Settings > Privacy & Security > Accessibility",
+        "  2. Click '+' to add your terminal app",
+        "     (Terminal.app, iTerm, Warp, etc.)",
+        "  3. Enable the toggle to grant permission",
       ].join("\n"),
     );
     process.exit(1);
